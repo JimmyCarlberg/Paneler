@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sesol Panelverktyg v.1</title>
+
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&family=Poppins:wght@500;700&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,600&display=swap');
+
+body {
+  font-family: "Roboto Flex", sans-serif;
+}
+
+h2 {
+  font-family: "Roboto Flex", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.panelDisplay {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  margin: 1rem 0;
+}
+
+.panelDisplay p {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 0 0 1rem 0;
+  
+}
+
+.panelInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem 0;
+}
+
+.panelInfo p{
+    font-size: 1.5rem;
+    font-weight: 100;
+}
+
+.panelInfo .bold {
+  font-weight: 300;
+}
+.roofMeasurements {
+  display: flex;
+  flex-direction: row;
+  gap:1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+
+}
+.roofMeasurements .inputField {
+  flex-grow:1;
+}
+
+.panelBtns {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 1rem 0;
+}
+
+.formBtns {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1rem 0 .5rem 0;
+}
+label {
+    font-size: 1.25rem;
+  font-weight: 300;
+  margin: 0 0 .5rem 0;
+}
+
+input {
+  padding: .75rem;
+  font-family: "Roboto Flex", sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.panelBtns button, .formBtns button {
+  display:flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  font-family: "Roboto Flex", sans-serif;
+  padding: .75rem 1.25rem;
+  font-weight: 300;
+  color: rgba(25,25,25,.6);
+  background: rgb(255,255,255);
+  border: 1px solid #ccc;
+  border-radius:25px;
+  appearance:none;
+  cursor: pointer;
+   transition: all 300ms ease-in-out;
+}
+
+.panelBtns button:hover, .formBtns button:hover,.panelBtns button:focus, .formBtns button:focus{
+  color:rgba(25,25,25,1);
+  border-color: rgb(37,123,50);
+border-color: linear-gradient(45deg, rgba(37,123,50,1) 0%, rgba(138,188,35,1) 100%);
+} 
+
+.formBtns button:hover, .formBtns button:focus{
+  color:rgba(255,255,255,1);
+  background: rgb(37,123,50);
+  background: linear-gradient(45deg, rgba(37,123,50,1) 0%, rgba(138,188,35,1) 100%);
+  border-color: rgb(37,123,50);
+border-color: linear-gradient(45deg, rgba(37,123,50,1) 0%, rgba(138,188,35,1) 100%);
+} 
+
+.result p{
+    font-size: 1.25rem;
+    font-weight: 100;
+}
+
+.bold {font-weight: 300;}
+
+
+.result h3 {
+    font-size: 1.75;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.result h2 {
+    font-size: 1.5;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.formBtns button:disabled, .formBtns:disabled:hover {
+  cursor: default;
+  color: #888;
+  border:1px solid #eee;
+  background: #eee;
+}
+
+hr {
+    height: 0px;
+    border: 1px solid #ccc;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <aside>
+            <img class="resp-logo" src="/images/sesol_logo.png" alt="Sesol" />
+        </aside>
+        <h1>Panelverktyg v.1</h1>
+    </header>
+    <main>
+        <h2>Välj panel:</h2>
+        <div class="panelBtns"></div>
+        <div class="panelDisplay" style="display: none;">
+            <div class="panelInfo"></div>
+            <form>
+                <div class="inputField">
+                    <label for="roofName">Lägg till namn</label>
+                    <input type="text" id="roofName" />
+                </div>
+
+                <div class="roofMeasurements">
+                    <div class="inputField">
+                        <label for="roofHeight">Takhöjd</label>
+                        <div class="field"><input type="text" id="roofHeight" /> cm</div>
+                    </div>
+                    <div class="inputField">
+                        <label for="roofWidth">Takbredd</label>
+                        <div class="field"><input type="text" id="roofWidth" /> cm</div>
+                    </div>
+
+                    <div class="inputField">
+                        <label for="numOfPanels">Antal paneler</label>
+                        <div class="field"><input type="number" id="numOfPanels" /> st</div>
+                    </div>
+
+                    <div class="inputField">
+                        <label for="rowOfPanels">Antal rader</label>
+                        <div class="field"><input type="number" id="rowOfPanels" /> st</div>
+                    </div>
+                </div>
+
+                <div class="result"></div>
+                <div class="formBtns">
+                    <button type="submit" id="calcBtn" disabled>Beräkna</button>
+                    <button type="submit" id="saveBtn" disabled>Spara tak</button>
+                </div>
+                <div id="saveList"></div>
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="cc.js"></script>
+</body>
+</html>
