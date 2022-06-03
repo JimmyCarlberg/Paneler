@@ -30,6 +30,10 @@
             flex-grow: 1;
         }
 
+        .panelInfo:empty {
+            display: hidden;
+        }
+
         .panelRow {
             display:flex;
             width: 100%;
@@ -154,6 +158,9 @@
     <h1 class="text-3xl font-bold my-4">Välj panel</h1>
     <div class="inline-flex items-center -space-x-px text-xs rounded-md panelBtns my-2">
     </div>
+    <div class="my-5 panelInfo">
+
+    </div>
     <div class="panelForm box">
         <p><a href="#">Visa montageanvisning</a></p>
         <form class="form">
@@ -190,9 +197,6 @@
         
         </form>
     </div>    
-    <div class="my-5 box panelInfo">
-
-    </div>
 
     <div class="ui segment panelLayout"> 
         
@@ -286,10 +290,12 @@ const listPanels =
             selectedPanel = panel;
             console.log(selectedPanel)
             panelInfo.innerHTML = `
+            <div class="box">
                 <h2 class="display-6">${panel.name}</h2>
-                <p><span class="bold">Längd:</span> ${panel.height} cm</p>
+                <p><span class="bold">Höjd:</span> ${panel.height} cm</p>
                 <p><span class="bold">Bredd:</span> ${panel.width} cm</p>
                 <p><span class="bold">CC mått:</span> ${panel.cc1} cm / ${panel.cc2} cm</p>
+            </div>    
                 `;
         
         
@@ -297,8 +303,6 @@ const listPanels =
             });
             calcResult.addEventListener('click', e => {
                 e.preventDefault();
-                selectedPanel = panel;
-                
                 const gapHeight = 1;
                 const gapWidth = 2;
                 let panelPerRow = rowOfPanels.value;
@@ -307,11 +311,11 @@ const listPanels =
                 let heightOfRoof = roofHeight.value;
                 let widthOfRoof = roofWidth.value;
             
-                const totalPanelHeight = (panelPerRow * panel.height) + (gapHeight * (panelPerRow - 1));
+                const totalPanelHeight = (panelPerRow * selectedPanel.height) + (gapHeight * (panelPerRow - 1));
                 // const totalPanelWidth = ((panelAmount / panelPerRow) * (panel.width + gapWidth)) ;
-                const totalPanelWidth = (panel.width * panelAmount) + (gapWidth * (panelAmount - 1));
+                const totalPanelWidth = (selectedPanel.width * (panelAmount / panelPerRow)) + (gapWidth * (panelAmount - 1));
                 const centerWidth = (widthOfRoof - totalPanelWidth) / 2;
-                const overhang = ((panel.height - panel.cc1) / 2) - 2.5;
+                const overhang = ((selectedPanel.height - panel.cc1) / 2) - 2.5;
                 result.innerHTML = `
             <h2>Resultat av beräkning</h2>
             <hr />
@@ -319,7 +323,7 @@ const listPanels =
             <div class="roofMeasurements"><p><span class="bold">Takhöjd:</span> ${(heightOfRoof / 100)} m</p>
             <p><span class="bold">Takbredd:</span> ${(widthOfRoof / 100)} m</p>
             </div>
-            <div class="roofMeasurements"><p><span class="bold">Totallängd:</span> ${Math.round(totalPanelHeight)} cm</p>
+            <div class="roofMeasurements"><p><span class="bold">Totalhöjd:</span> ${Math.round(totalPanelHeight)} cm</p>
             <p><span class="bold">Antal rader:</span> ${panelPerRow}st</p>
             </div>
             <div class="roofMeasurements"><p><span class="bold">Totalbredd:</span> ${Math.round(totalPanelWidth)} cm</p>
