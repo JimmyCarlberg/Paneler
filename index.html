@@ -183,22 +183,22 @@
             <div class="fields">
                 <div  class="field">
                     <label for="roofHeight">Takhöjd</label>
-                    <div><input type="text" id="roofHeight" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> cm</div>
+                    <div><input type="text" id="roofHeight" pattern="[0-9]+" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> cm</div>
                 </div>
                 <div  class="field">
                     <label>Bredd</label>
-                    <div><input type="text" placeholder="1100" id="roofWidth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> cm</div>
+                    <div><input type="text" placeholder="1100" pattern="[0-9]+" id="roofWidth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> cm</div>
                 </div>
             </div>
 
             <div class="fields">
                 <div  class="field">
                     <label>Antal paneler</label>
-                    <div><input type="number" placeholder="40" id="numOfPanels" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></div>
+                    <div><input type="number" placeholder="40" pattern="[0-9]+" id="numOfPanels" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></div>
                 </div>
                 <div  class="field">
                     <label>Antal rader</label>
-                    <div><input type="number" placeholder="4" id="rowOfPanels" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></div>
+                    <div><input type="number" placeholder="4" pattern="[0-9]+" id="rowOfPanels" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></div>
                 </div>
             </div>
             <div class="btnFields">
